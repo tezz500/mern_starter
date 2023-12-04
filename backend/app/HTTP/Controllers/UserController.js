@@ -4,6 +4,7 @@ const CatchAsyncError = require('../../Middleware/CatchAsyncError');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Role = require('../../Enum/RoleEnum');
+const { getPermissions } = require('../../Helpers/Helper');
 
 exports.register = CatchAsyncError(async (req, res, next)=>{
     const { name, email, password, confirm_password, phone } = req.body;
@@ -53,9 +54,17 @@ exports.login = CatchAsyncError(async (req, res, next)=>{
       expiresIn: '1h',
     });
     // res.cookie('token', token, { httpOnly: true, secure: true });
+    const permissions = await getPermissions(token);
+    console.log("this is permissions ", permissions);
     res.status(200).json({ 
         message:"Successfully Logged In",
-        token:token, 
-        userId: user._id 
+        token:token,
+        userInfo:{
+            name:user.name,
+            email:user.email,
+            role:user.role,
+        },
+        userId: user._id,
+        permissions:permissions,
     });
 })

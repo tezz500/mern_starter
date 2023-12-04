@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {Helmet}  from 'react-helmet';
 
 const MetaComponent = (meta)=>{
