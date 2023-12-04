@@ -1,0 +1,26 @@
+{
+  "name": "ecommerce_learn",
+  "version": "1.0.0",
+  "description": "This is ecommerce project by using MERN",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon server.js",
+    "prod": "SET NODE_ENV=PRODUCTION& nodemon server.js",
+    "db:seed": "node database/seeders/DatabaseSeeder.js",
+    "product:seed": "node database/seeders/ProductSeeder.js"
+  },
+  "author": "Tejendra Dangaura",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^6.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

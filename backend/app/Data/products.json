@@ -1,0 +1,192 @@
+[
+    {
+        "name":"Test Product First",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    },
+    {
+        "name":"Test Product Second",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    },
+    {
+        "name":"Test Product Third",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    },
+    {
+        "name":"Test Product Fourth",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    },
+    {
+        "name":"Test Product Fifth",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    },
+    {
+        "name":"Test Product Sixth",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    },
+    {
+        "name":"Test Product Seventh",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    },
+    {
+        "name":"Test Product Eighth",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    },
+    {
+        "name":"Test Product ninth",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    },
+    {
+        "name":"Test Product Tenth",
+        "summary":"This is for test",
+        "description":"This is for test",
+        "price":500,
+        "rattings":5,
+        "images":[
+            {
+                "public_id":"this_is_for_test",
+                "url":"https://np-live-21.slatic.net/kf/Sde3ce9c547924c78afbd4a6a0ea0e121m.jpg"
+            }
+        ],
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":6,
+        "reviews":[]
+    
+    }
+]

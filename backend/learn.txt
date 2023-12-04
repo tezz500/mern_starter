@@ -1,0 +1,32 @@
+
+Chapter 1
+Step 1: npm init
+
+step 2: install required package
+npm install express dotenv mongoose
+
+or 
+npm install express
+npm install dotenv
+npm install mongoose
+
+
+Chapter 2
+step 3:
+to instal nodemon(this package is used to restart server with the changes of file)
+npm install nodemon --save-dev
+
+
+we can set runnint srcipt by
+"scripts": {
+    "start": "node backend/server.js",
+    "dev":"SET NODE_ENV=DEVELOPMENT& nodemon backend/server.js",
+    "prod":"SET NODE_ENV=PRODUCTION& nodemon backend/server.js"
+  },
+in package json(other also can be make as your requirement)
+
+
+
+
+
+
