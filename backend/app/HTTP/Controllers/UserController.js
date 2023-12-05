@@ -55,7 +55,6 @@ exports.login = CatchAsyncError(async (req, res, next)=>{
     });
     // res.cookie('token', token, { httpOnly: true, secure: true });
     const permissions = await getPermissions(token);
-    console.log("this is permissions ", permissions);
     res.status(200).json({ 
         message:"Successfully Logged In",
         token:token,
@@ -68,3 +67,65 @@ exports.login = CatchAsyncError(async (req, res, next)=>{
         permissions:permissions,
     });
 })
+
+exports.index = CatchAsyncError(async (req, res, next)=>{
+    const users = await User.find({});
+    res.status(201).json({
+        success:true,
+        message:"User List",
+        data:users,
+        status:201
+    });
+})
+
+exports.store = CatchAsyncError(async (req, res, next)=>{
+    const user = new User(req.body);
+    user.save();
+    res.status(201).json({
+        success:true,
+        message:"Successfully User Has been created",
+        data:user,
+        status:201,
+    })
+});
+
+exports.show = CatchAsyncError(async(req, res, next)=>{
+    const user = await User.findById(req.params.id)
+    if(!user){
+        return next(new ErrorHandller("Sorry Not Found"), 404);
+    }
+    res.status(201).json({
+        success:true,
+        message:"User For edit Or Show",
+        data:user,
+        status:201,
+    });
+})
+
+exports.update = CatchAsyncError(async (req, res, next)=>{
+    const user = await User.findById(req.params.id)
+    if(!user){
+        return next(new ErrorHandller("Sorry Not Found"), 404);
+    }
+    user.update(req.body);
+    res.status(201).json({
+        success:true,
+        message:"Successfully Updated",
+        data:user,
+        status:201,
+    });
+});
+
+exports.deleteFunction = CatchAsyncError(async (req, res, next)=>{
+    const user = await User.findById(req.params.id)
+    if(!user){
+        return next(new ErrorHandller("Sorry Not Found"), 404);
+    }
+    user.delete();
+    res.status(201).json({
+        success:true,
+        message:"Successfully Deleted",
+        data:null,
+        status:201,
+    });
+});
