@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     role:{
         type:Number,
         required:[false, '']
+    },
+    staus:{
+        type:Boolean,
+        required:[false, '']
     }
 });
 

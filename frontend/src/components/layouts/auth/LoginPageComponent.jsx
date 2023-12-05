@@ -36,6 +36,7 @@ const LoginPage = () => {
                 token:response.data.token,
                 permissions:response.data.permissions,
             }
+            axios.defaults.headers = `Authorization: Bearer ${appInfo.token}`;
             const data = JSON.stringify(appInfo);
             const saveData = encryptData(data);
             localStorage.setItem('app_info', saveData);

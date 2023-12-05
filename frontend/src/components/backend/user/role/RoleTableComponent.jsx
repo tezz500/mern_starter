@@ -1,18 +1,18 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { can, logout } from "../../../helper/helper";
-import axios from "../../../helper/axios";
-import RoleEnum from "../../../enum/RoleEnum";
+import { can, logout } from "../../../../helper/helper";
+import axios from "../../../../helper/axios";
+import Role from "../../../../enum/RoleEnum";
 
 const UserFormComponent = () => {
     const navigate = useNavigate();
-    const [users, setUsers] = useState([]);
+    const [roles, setRoles] = useState([]);
     const [loading, setLoading] = useState(true);
-    const fetchUsers = useCallback(async () => {
+    const fetchRoles = useCallback(async () => {
         setLoading(true);
-        axios.get('users')
+        axios.get('roles')
             .then((response) => {
-                setUsers(response.data.data);
+                setRoles(response.data.data);
             }).catch((error) => {
                 if (error.response.status === 401) {
                     logout();
@@ -27,8 +27,8 @@ const UserFormComponent = () => {
     }, [navigate]);
 
     useEffect(() => {
-        fetchUsers();
-    }, [fetchUsers]);
+        fetchRoles();
+    }, [fetchRoles]);
     return (
         <div className="container">
             <table className="table table-bordered table-striped">
@@ -36,30 +36,20 @@ const UserFormComponent = () => {
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Phone</th>
-                        <th>Status</th>
+                        <th>Permissions</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     {
-                        (!loading && users.length > 0) &&
-                        users.map((item, index) => {
+                        (!loading && roles.length > 0) &&
+                        roles.map((item, index) => {
                             return (
                             <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>{item.name}</td>
-                                <td>{item.name}</td>
-                                <td>
-                                        {item.role === RoleEnum.ADMIN && (<span>Admin</span>)}
-                                       { item.role === RoleEnum.AGENT && (<span>Agent</span>)}
-                                        {item.role === RoleEnum.USER && (<span>User</span>)}
-                                </td>
-                                <td>{item.phone}</td>
-                                <td>{item.status ?? 'Inactive'}</td>
+                                <td></td>
                                 <td>
                                     <div className="btn-group">
                                         {
@@ -97,7 +87,7 @@ const UserFormComponent = () => {
                     }
 
                     {
-                        (!loading && users.length <= 0) &&
+                        (!loading && roles.length <= 0) &&
                         <tr>
                             <td colSpan={7}>
                                 <center>No Record Found</center>
@@ -106,7 +96,7 @@ const UserFormComponent = () => {
                     }
 
                     {
-                        (loading && users.length <= 0) &&
+                        (loading && roles.length <= 0) &&
                         <tr>
                             <td colSpan={7}>
                                 <center>Loading ..........</center>

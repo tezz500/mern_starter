@@ -3,7 +3,7 @@ const ErrorHandller = require('../../vendor/Error/ErrorHandller');
 const CatchAsyncError = require('../../Middleware/CatchAsyncError');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const Role = require('../../Enum/RoleEnum');
+const RoleEnum = require('../../Enum/RoleEnum');
 const { getPermissions } = require('../../Helpers/Helper');
 
 exports.register = CatchAsyncError(async (req, res, next)=>{
@@ -23,7 +23,7 @@ exports.register = CatchAsyncError(async (req, res, next)=>{
         email,
         phone,
         password:hashValue,
-        role:Role.USER
+        role:RoleEnum.USER
     })
     const savedUser = user.save();
     if(!savedUser){
@@ -80,7 +80,7 @@ exports.index = CatchAsyncError(async (req, res, next)=>{
 
 exports.store = CatchAsyncError(async (req, res, next)=>{
     const user = new User(req.body);
-    user.save();
+    await user.save();
     res.status(201).json({
         success:true,
         message:"Successfully User Has been created",

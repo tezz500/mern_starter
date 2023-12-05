@@ -8,6 +8,7 @@ app.use(express.json());
 const errorMiddleware = require('../app/Middleware/Error');
 const products = require('./product');
 const users = require('./user');
+const roles = require('./roles');
 
 app.get('/', (req, res, next)=>{
     res.send("Welcome to the ecommerce tutorials");
@@ -16,6 +17,7 @@ app.get('/', (req, res, next)=>{
 app.use(cors());
 app.use('/api/v1', products);
 app.use('/api/v1', users);
+app.use('/api/v1', roles);
 
 // using error middleware
 app.use(errorMiddleware);

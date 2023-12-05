@@ -6,7 +6,6 @@ const checkPermission = (permission) => {
         try {
             const token = req.headers.authorization.split(' ')[1];
             const permissionGranted = await can(token, permission);
-
             if (permissionGranted) {
                 next();
             } else {

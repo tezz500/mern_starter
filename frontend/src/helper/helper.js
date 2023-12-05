@@ -15,7 +15,7 @@ const checkAuth = ()=>{
     try {
         let data = localStorage.getItem('app_info');
         data = decryptData(data);
-        data = JSON.parse(data);   
+        data = JSON.parse(data);
         if(data){
             return true
         }else{
@@ -26,6 +26,45 @@ const checkAuth = ()=>{
     }
 }
 
+const getToken = () =>{
+    try {
+        let data = localStorage.getItem('app_info');
+        data = decryptData(data);
+        data = JSON.parse(data);
+        if(data){
+            return data.token;
+        }else{
+            return null;
+        }
+    } catch (error) {
+        return null;
+    }
+ 
+}
+
+const getPermissions = ()=>{
+    try {
+        let data = localStorage.getItem('app_info');
+        data = decryptData(data);
+        data = JSON.parse(data);
+        if(data){
+            return data.permissions;
+        }else{
+            return [];
+        }
+    } catch (error) {
+        return [];
+    }
+}
+
+const can = (permission)=>{
+    const permissions = getPermissions();
+    if(permissions.includes(permission)){
+        return true;
+    }else{
+        return false;
+    }
+}
 const userInfo = ()=>{
     try {
         let data = localStorage.getItem('app_info');
@@ -39,4 +78,8 @@ const userInfo = ()=>{
         return [];
     }
 }
-export {encryptData, decryptData, checkAuth, userInfo}
+
+const logout = ()=>{
+    localStorage.setItem('app_info', '');
+}
+export {encryptData, decryptData, checkAuth, userInfo, getToken, can, logout}

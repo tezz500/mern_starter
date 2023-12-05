@@ -17,7 +17,7 @@ const OrginTemplate = () =>{
 
     return (
         <>
-            { Object.keys(metaProps).length > 0 ? <MetaComponent props={metaProps} /> : '' }
+            { Object.keys(metaProps).length > 0 && <MetaComponent props={metaProps} /> }
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <Link className="navbar-brand" to="#">Navbar</Link>

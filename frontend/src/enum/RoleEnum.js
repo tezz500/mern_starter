@@ -3,4 +3,4 @@ const RoleEnum ={
     AGENT:2,
     USER:3,
 }
-module.exports = RoleEnum;
+export default RoleEnum;
