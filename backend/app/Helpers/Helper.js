@@ -12,8 +12,8 @@ const getPermissions = async (token)=>{
         const roleHasPermissions = await RoleHasPermission.find({role_id:role[0]._id});
         const permissionIds = roleHasPermissions.map(item => item.permission_id)
         const permissions = await Permission.find({ _id: { $in: permissionIds } });
-        const rerturn_permissions = permissions.map(item => item.slug);
-        return await rerturn_permissions;
+        const return_permissions = permissions.map(item => item.slug);
+        return await return_permissions;
     } catch (error) {
         return  [];
     }

@@ -63,31 +63,28 @@ const UserFormComponent = () => {
                                 <td>
                                     <div className="btn-group">
                                         {
-                                            can('read-user')
-                                                ?
+                                            can('read-user') &&
+                                            (
                                                 <button className="btn-sm btn-info m-1">
                                                     <i className="fa fa-eye"></i>
                                                 </button>
-                                                :
-                                                null
+                                            )
                                         }
                                         {
-                                            can('update-user')
-                                                ?
+                                            can('update-user') && 
+                                            (
                                                 <button className="btn-sm btn-success m-1">
                                                     <i className="fa fa-edit"></i>
                                                 </button>
-                                                :
-                                                null
+                                            )
                                         }
                                         {
-                                            can('delete-user')
-                                                ?
+                                            can('delete-user') &&
+                                            (
                                                 <button className="btn-sm btn-danger m-1">
                                                     <i className="fa fa-trash"></i>
                                                 </button>
-                                                :
-                                                null
+                                            )
                                         }
                                     </div>
                                 </td>
