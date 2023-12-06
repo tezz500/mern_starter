@@ -40,7 +40,8 @@ const LoginPage = () => {
             const data = JSON.stringify(appInfo);
             const saveData = encryptData(data);
             localStorage.setItem('app_info', saveData);
-            navigate('/admin');
+            // navigate('/admin');
+            window.location.href = '/admin';
         }).catch((error) => {
             console.log(error);
             if (error.response.status === 401) {
