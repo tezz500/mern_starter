@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { can } from '../../../../helper/helper';
+import { can} from '../../../../helper/helper';
 
 const UserManagementSidebar = () => {
   const location = useLocation();
-
   const userManagementPermissions =
     can('read-user') ||
     can('create-user') ||

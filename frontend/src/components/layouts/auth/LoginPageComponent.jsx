@@ -13,7 +13,8 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (checkAuth()) {
-            navigate('/admin');
+            window.location.href = '/admin';
+            // navigate('/admin');
         }
         setMeta({
             title: "Login Page",

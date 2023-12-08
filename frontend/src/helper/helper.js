@@ -1,3 +1,4 @@
+// import $ from 'jquery';
 const CryptoJS = require('crypto-js');
 let secretKey = "your_secret_key";
 const encryptData = (data)=>{
@@ -82,4 +83,15 @@ const userInfo = ()=>{
 const logout = ()=>{
     localStorage.setItem('app_info', '');
 }
-export {encryptData, decryptData, checkAuth, userInfo, getToken, can, logout}
+
+const loadTree = ()=> {
+    // $(document).ready(function(){
+    //     $('[data-widget="treeview"]').each(function () {
+    //         if ($(this).data('treeview-init') === undefined) {
+    //             $(this).Treeview('init');
+    //             $(this).data('treeview-init', true);
+    //         }
+    //     });
+    // });
+}
+export {encryptData, decryptData, checkAuth, userInfo, getToken, can, logout, loadTree}

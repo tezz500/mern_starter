@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom"
 import UserManagementSidebar from "./sidebar-management/UserManagementSidebar";
 import UserInfoSidebar from "./sidebar-management/UserInfoSidebar";
+import { loadTree } from "../../../helper/helper";
+import { useEffect } from "react";
 const BackendSidebar = ()=>{
+    useEffect(()=>{
+        loadTree();
+    }, []);
     return (
             <div>
                 <aside className="main-sidebar sidebar-dark-primary elevation-4">

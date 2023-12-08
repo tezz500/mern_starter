@@ -49,7 +49,7 @@ const UserFormComponent = () => {
                         (!loading && users.length > 0) &&
                         users.map((item, index) => {
                             return (
-                            <tr key={index}>
+                            <tr key={index+JSON.stringify(item)}>
                                 <td>{index + 1}</td>
                                 <td>{item.name}</td>
                                 <td>{item.name}</td>
