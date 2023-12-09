@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import UserNavigation from "./top-navigation/UserNavigation";
 const BackendNavigation = () => {
     return (
         <div>
@@ -88,6 +89,7 @@ const BackendNavigation = () => {
                             <Link to={'#'} className="dropdown-item dropdown-footer">See All Messages</Link>
                         </div>
                     </li>
+
                     <li className="nav-item dropdown">
                         <Link className="nav-link" data-toggle="dropdown" to={'#'}>
                             <i className="far fa-bell"></i>
@@ -114,6 +116,7 @@ const BackendNavigation = () => {
                             <Link to={'#'} className="dropdown-item dropdown-footer">See All Notifications</Link>
                         </div>
                     </li>
+                    <UserNavigation />
                     <li className="nav-item">
                         <Link className="nav-link" data-widget="fullscreen" to={'#'} role="button">
                             <i className="fas fa-expand-arrows-alt"></i>

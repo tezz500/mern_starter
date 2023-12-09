@@ -3,10 +3,11 @@ import OrginTemplate from "../components/layouts/OriginTemplate";
 import ForbiddenComponent from "../components/backend/errors/ForbiddenComponent";
 import BackendTemplate from "../components/backend/layouts/BackendTemplate";
 import BackendDashboard from '../components/backend/BackendDashboard';
-import UserFormComponent from '../components/backend/user/UserFormComponent';
 import UserTableComponent from "../components/backend/user/UserTableComponent";
-import RoleFormComponent from '../components/backend/user/role/RoleFormComponent';
+import UserFormComponent from '../components/backend/user/UserFormComponent';
+
 import RoleTableComponent from "../components/backend/user/role/RoleTableComponent";
+import RoleFormComponent from '../components/backend/user/role/RoleFormComponent';
 
 import LoginPage from "../components/layouts/auth/LoginPageComponent";
 const router = createBrowserRouter([
@@ -24,8 +25,13 @@ const router = createBrowserRouter([
                 element: <RoleTableComponent />,
             },
             {
-                pathname:"user-create",
-                path: "user/create",
+                pathname:"role-create",
+                path: "role/create",
+                element: <RoleFormComponent />,
+            },
+            {
+                pathname:"role-edit",
+                path: "role/:id",
                 element: <RoleFormComponent />,
             },
             {

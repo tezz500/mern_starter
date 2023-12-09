@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { can, logout } from "../../../helper/helper";
+import { useNavigate, Link } from "react-router-dom";
+import { can, logout, encryptData } from "../../../helper/helper";
 import axios from "../../../helper/axios";
 import RoleEnum from "../../../enum/RoleEnum";
 
@@ -30,7 +30,16 @@ const UserFormComponent = () => {
         fetchUsers();
     }, [fetchUsers]);
     return (
-        <div className="container">
+        <div className="col-md-12">
+            <div className="row mb-2">
+                <div className="col-md-12">
+                    <Link to={'create'} className="btn btn-sm btn-primary">
+                        <i className="fa fa-plus"></i>
+                        Create New
+                    </Link>
+                </div>
+            </div>
+
             <table className="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -49,7 +58,7 @@ const UserFormComponent = () => {
                         (!loading && users.length > 0) &&
                         users.map((item, index) => {
                             return (
-                            <tr key={index+JSON.stringify(item)}>
+                            <tr key={index+encryptData(item.name)}>
                                 <td>{index + 1}</td>
                                 <td>{item.name}</td>
                                 <td>{item.name}</td>

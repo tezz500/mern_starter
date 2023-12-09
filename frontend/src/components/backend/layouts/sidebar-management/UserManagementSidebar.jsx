@@ -13,6 +13,8 @@ const UserManagementSidebar = () => {
     can('create-role') ||
     can('update-role') ||
     can('delete-role');
+    
+  const isOpenMenu = (location.pathname === '/admin/user' || location.pathname === '/admin/user/*' || location.pathname === '/admin/role' || location.pathname === '/admin/role/*');
 
   const rolePermissions = can('read-role') || can('create-role') || can('update-role') || can('delete-role');
   const userPermissions = can('read-user') || can('create-user') || can('delete-user') || can('update-user');
@@ -20,7 +22,7 @@ const UserManagementSidebar = () => {
   return userManagementPermissions ? (
     <li
       className={`nav-item ${
-        location.pathname === '/admin/user' || location.pathname === '/admin/role' ? 'menu-open' : ''
+        isOpenMenu ? 'menu-open' : ''
       }`}
     >
       <Link

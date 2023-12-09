@@ -36,11 +36,13 @@ const LoginPage = () => {
                 user:response.data.userInfo,
                 token:response.data.token,
                 permissions:response.data.permissions,
+                created_at:response.data.created_at,
             }
             axios.defaults.headers = `Authorization: Bearer ${appInfo.token}`;
             const data = JSON.stringify(appInfo);
             const saveData = encryptData(data);
             localStorage.setItem('app_info', saveData);
+            console.log("Response ", response);
             // navigate('/admin');
             window.location.href = '/admin';
         }).catch((error) => {

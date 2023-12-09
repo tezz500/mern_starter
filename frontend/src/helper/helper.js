@@ -1,4 +1,4 @@
-// import $ from 'jquery';
+import moment from 'moment';
 const CryptoJS = require('crypto-js');
 let secretKey = "your_secret_key";
 const encryptData = (data)=>{
@@ -18,8 +18,17 @@ const checkAuth = ()=>{
         data = decryptData(data);
         data = JSON.parse(data);
         if(data){
-            return true
+            const currentTime = moment();
+            const created_at = moment(data.created_at);
+            const minutes = currentTime.diff(created_at, 'minutes');
+            if(minutes < 60){
+                return true;
+            }else{
+                logout();
+                return false;
+            }
         }else{
+            logout();
             return false;
         }
     } catch (error) {
