@@ -44,6 +44,11 @@ const router = createBrowserRouter([
                 path: "user/create",
                 element: <UserFormComponent />,
             },
+            {
+                pathname:"user-edit",
+                path: "user/:id/edit",
+                element: <UserFormComponent />,
+            },
         ],
     },
     {

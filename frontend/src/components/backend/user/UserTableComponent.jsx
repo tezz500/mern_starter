@@ -1,13 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { can, logout, encryptData } from "../../../helper/helper";
+import { can, encryptData, checkAuth, logout } from "../../../helper/helper";
 import axios from "../../../helper/axios";
 import RoleEnum from "../../../enum/RoleEnum";
+import Swal from 'sweetalert2';
 
 const UserFormComponent = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+
     const fetchUsers = useCallback(async () => {
         setLoading(true);
         axios.get('users')
@@ -25,10 +27,38 @@ const UserFormComponent = () => {
                 setLoading(false);
             });
     }, [navigate]);
+    const deleteUser = async (id)=>{
+        try {
+            Swal.fire({
+                title: "Do you want Delete?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Delete",
+                denyButtonText: `Don't Delete`
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  const respose = await axios.delete(`/users/${id}`);
+                  await fetchUsers();
+                  Swal.fire("Deleted!", "", "success");
+                } else if (result.isDenied) {
+                  Swal.fire("Changes are not saved", "", "info");
+                }
+              });
+        } catch (error) {
+            console.log(error);
+        }finally{
+
+        }
+    }
 
     useEffect(() => {
+        if(!checkAuth()){
+            logout();
+            navigate('/login');
+        }
         fetchUsers();
     }, [fetchUsers]);
+
     return (
         <div className="col-md-12">
             <div className="row mb-2">
@@ -61,11 +91,11 @@ const UserFormComponent = () => {
                             <tr key={index+encryptData(item.name)}>
                                 <td>{index + 1}</td>
                                 <td>{item.name}</td>
-                                <td>{item.name}</td>
+                                <td>{item.email}</td>
                                 <td>
-                                        {item.role === RoleEnum.ADMIN && (<span>Admin</span>)}
+                                       {item.role === RoleEnum.ADMIN && (<span>Admin</span>)}
                                        { item.role === RoleEnum.AGENT && (<span>Agent</span>)}
-                                        {item.role === RoleEnum.USER && (<span>User</span>)}
+                                       {item.role === RoleEnum.USER && (<span>User</span>)}
                                 </td>
                                 <td>{item.phone}</td>
                                 <td>{item.status ?? 'Inactive'}</td>
@@ -82,15 +112,15 @@ const UserFormComponent = () => {
                                         {
                                             can('update-user') && 
                                             (
-                                                <button className="btn-sm btn-success m-1">
+                                                <Link to={`${item._id}/edit`} className="btn-sm btn-success m-1">
                                                     <i className="fa fa-edit"></i>
-                                                </button>
+                                                </Link>
                                             )
                                         }
                                         {
                                             can('delete-user') &&
                                             (
-                                                <button className="btn-sm btn-danger m-1">
+                                                <button className="btn-sm btn-danger m-1" onClick={()=>deleteUser(item._id)}>
                                                     <i className="fa fa-trash"></i>
                                                 </button>
                                             )

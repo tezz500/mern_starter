@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { can, logout, encryptData } from "../../../../helper/helper";
+import { can, logout, encryptData, checkAuth } from "../../../../helper/helper";
 import axios from "../../../../helper/axios";
 import Swal from 'sweetalert2'
 
@@ -52,6 +52,10 @@ const UserFormComponent = () => {
     }
 
     useEffect(() => {
+        if(!checkAuth()){
+            logout();
+            navigate('/login');
+        }
         fetchRoles();
     }, [fetchRoles]);
     return (

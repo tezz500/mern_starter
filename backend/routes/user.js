@@ -4,6 +4,7 @@ const router = express.Router();
 const {register, login, index, show, store, update, deleteFunction}= require('../app/HTTP/Controllers/UserController');
 const auth = require('../app/Middleware/Authenticated');
 const can = require('../app/Middleware/Can');
+const UserRequest = require('../app/Request/UserRequest');
 
 router.post('/register', register);
 router.post('/login', login);

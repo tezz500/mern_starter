@@ -1,10 +1,12 @@
+const { body, validationResult, matchedData } = require('express-validator');
 const User = require('../../Models/User');
 const ErrorHandller = require('../../vendor/Error/ErrorHandller');
 const CatchAsyncError = require('../../Middleware/CatchAsyncError');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const RoleEnum = require('../../Enum/RoleEnum');
-const { getPermissions } = require('../../Helpers/Helper');
+const { getPermissions, getValidationErrors, getHashValue } = require('../../Helpers/Helper');
+const UserRequest = require('../../Request/UserRequest');
 
 exports.register = CatchAsyncError(async (req, res, next)=>{
     const { name, email, password, confirm_password, phone } = req.body;
@@ -78,16 +80,33 @@ exports.index = CatchAsyncError(async (req, res, next)=>{
     });
 })
 
-exports.store = CatchAsyncError(async (req, res, next)=>{
-    const user = new User(req.body);
-    await user.save();
-    res.status(201).json({
-        success:true,
-        message:"Successfully User Has been created",
-        data:user,
-        status:201,
+exports.store =[
+    ...UserRequest,
+    CatchAsyncError(async (req, res, next)=>{
+        console.log(req.body);
+        const { password } = matchedData(req);
+        if (password) {
+            await body('confirm_password')
+              .equals(password)
+              .withMessage('passwords do not match')
+              .run(req);
+        }
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return getValidationErrors(req, res);
+        }
+
+        const user = new User({...req.body, password:await getHashValue(req.body.password)});
+        await user.save();
+        return res.status(201).json({
+            success:true,
+            message:"Successfully User Has been created",
+            data:user,
+            status:201,
+        })
     })
-});
+];
 
 exports.show = CatchAsyncError(async(req, res, next)=>{
     const user = await User.findById(req.params.id)
@@ -102,12 +121,14 @@ exports.show = CatchAsyncError(async(req, res, next)=>{
     });
 })
 
+
 exports.update = CatchAsyncError(async (req, res, next)=>{
     const user = await User.findById(req.params.id)
     if(!user){
         return next(new ErrorHandller("Sorry Not Found"), 404);
     }
-    user.update(req.body);
+    const password = user.password;
+    await user.update({...req.body, password:password});
     res.status(201).json({
         success:true,
         message:"Successfully Updated",

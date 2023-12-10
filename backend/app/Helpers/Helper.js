@@ -2,7 +2,8 @@ const Permission =  require('../Models/Permission');
 const Role =  require('../Models/Role');
 const RoleHasPermission =  require('../Models/RoleHasPermission');
 const jwt = require('jsonwebtoken');
-
+const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
 const getPermissions = async (token)=>{
     const secretKey = 'your-secret-key';
     try {
@@ -27,4 +28,24 @@ const can = async (token, permission)=>{
     }
 }
 
-module.exports =  { getPermissions, can }
+const getValidationErrors =(req, res)=>{
+    const errors = validationResult(req);
+    const groupedData = errors.array().reduce((result, item) => {
+        const { path } = item;
+        result[path] = result[path] || [];
+        result[path].push(item);
+        return result;
+    }, {});
+    return res.status(422).json({
+        success:false,
+        message:"Unprocessable Data",
+        data:groupedData,
+        status:422,
+    });
+}
+
+const getHashValue = async (password) => {
+    return await bcrypt.hash(password, 10);
+}
+
+module.exports =  { getPermissions, can, getValidationErrors, getHashValue}
